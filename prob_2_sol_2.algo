@@ -1,0 +1,62 @@
+// Problem 2 - solution 2
+
+//  saisie des 2 array 
+FUNCTION test_size() : INTEGER
+VAR
+    N : INTEGER; 
+BEGIN
+    REPEAT
+        Write("saisir la taille du tab " )
+    UNTIL (N <= 0 OR n > 40)
+    RETURN N ;
+END
+
+PROCEDURE remplir_tab(VAR n : INTEGER, VAR Tab : ARRAY_OF INTEGER )
+VAR
+    i : INTEGER; 
+BEGIN
+    FOR i FROM 0 TO N - 1 DO
+        Read (T[i]);
+    END_FOR
+END
+ // fin saisie 2 array
+
+ALGORITHM calcul_common 
+VAR
+    Htab: HASH_TABLE<INTEGER,INTEGER>;
+    arr1, arr2 : ARRAY_OF INTEGER [40];
+    i, N ,M, count,sum : INTEGER 
+BEGIN
+   
+   N := test_size() ;
+   M := test_size() ;
+   remplir_tab(N,arr1);
+   remplir_tab(M,arr2);
+
+   FOR i FROM 0 TO N -1  STEP  1 DO
+    IF (Htab.lookup(arr1[i])= TRUE) THEN
+        count := Htab.get(arr1[i]);
+        Htab.insert(arr1[i],count+1);
+    ELSE
+        Htab.insert(arr1[i],1);
+    END_IF
+   END_FOR 
+
+   FOR i FROM 0 TO M -1 STEP  1 DO
+    IF (Htab.lookup(arr2[i])= TRUE) THEN
+        count := Htab.get(arr2[i]);
+        Htab.insert(arr2[i],count+1);
+    ELSE
+        Htab.insert(arr2[i],1);
+    END_IF
+   END_FOR 
+
+// somme + affichage dans Htab : on va tester par 2 car d'aprés l'énoncé on a pas le risque de ducplication des entiers dans le tab saisi
+
+   FOR i FROM 0 TO N -1  STEP 1 DO
+       IF (Htab.get(arr1[i]) = 2 ) THEN
+           sum := sum + arr1[i]*2;
+       END_IF
+   END_FOR
+  Write("la somme est égale à ", sum );
+END

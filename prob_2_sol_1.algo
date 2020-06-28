@@ -1,0 +1,63 @@
+// Problem 2- solution 1 
+
+//  saisie des 2 array 
+FUNCTION test_size() : INTEGER
+VAR
+    N : INTEGER; 
+BEGIN
+    REPEAT
+        Write("saisir la taille du tab" )
+    UNTIL (N <= 0 OR n > 40)
+    RETURN N ;
+END
+
+PROCEDURE remplir_tab(VAR N : INTEGER, VAR Tab : ARRAY_OF INTEGER )
+VAR
+    i : INTEGER; 
+BEGIN
+    FOR i FROM 0 TO N - 1 DO
+        Read (T[i]);
+    END_FOR
+END
+ // fin saisie 2 array
+
+ALGORITHM Calcul_common
+VAR
+    sum  : INTEGER := 0 ; 
+    i , N , M, j : INTEGER; 
+    arr1 , ar2 : ARRAY_OF INTEGER [40];
+    existe : BOOLEAN; 
+
+//insertion des 2 tableau 
+
+BEGIN
+
+ N :=  test_size() ;
+ M := test_size() ;
+ remplir_tab(N,arr1);
+ remplir_tab(M,arr2);
+
+// teste des tab vide + recherche occurance 
+
+IF (N=0) and (M <> 0) THEN
+        sum := 0;
+
+ELSE_IF (M=0) and (N<>0) THEN
+        sum := 0;
+ELSE
+    FOR i FROM 0 TO N - 1 STEP 1  DO
+        FOR j FROM 0 TO M - 1 STEP 1  DO
+        IF (arr1 [i] = arr2[j])  THEN
+            sum := sum + arr1[i] + arr2[j]
+            BREAK; 
+        END_IF
+        END_FOR
+    END_FOR      
+END_IF 
+IF (N=0)and(M=0) THEN
+    sum := 0; 
+    Write("les 2 tableaux sont vides ! somme des entiers en commun est égale :",sum) ; 
+ELSE
+    Write("la somme des entiers  distinct est",sum) ; 
+END_IF   
+END  
